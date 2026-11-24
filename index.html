@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky — catch fake AI code before you merge it</title>
+<meta name="description" content="Sky is a Claude Code plugin that flags AI code that only looks done: empty tests, hardcoded answers, hidden errors. Free beta for 5 teams.">
+<meta property="og:title" content="Sky — catch fake AI code before you merge it">
+<meta property="og:description" content="A Claude Code plugin that flags AI code that only looks done. Free beta, 5 spots.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231F3F94' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v18M5 21h14M4 7h16M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F7F6F2}
+a{color:#1F3F94;text-decoration:none}a:hover{color:#16181D;text-decoration:underline}
+.btn:hover{color:#F7F6F2;text-decoration:none;opacity:.88}
+</style>
+<style>
+html{scroll-behavior:smooth}
+@media (max-width:640px){
+ h1{font-size:36px !important}
+ #why > div, #how > div, #beta > div:first-of-type{grid-template-columns:1fr !important}
+}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181D; background: #F7F6F2; line-height: 1.6; font-size: 17px">
+<div style="max-width: 760px; margin: 0 auto; padding: 0 24px">
+
+<header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding: 28px 0; border-bottom: 1px solid #DEDBD2">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; color: #16181D; font-weight: 600; font-size: 18px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3F94" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 21h14M4 7h16M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/></svg>
+Sky <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: #1F3F94; border: 1px solid #1F3F94; border-radius: 4px; padding: 1px 6px">beta</span>
+</a>
+<nav style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; align-items: center">
+<a href="#how" style="color: #4A4D55">How it works</a>
+<a href="#beta" style="color: #4A4D55">Beta</a>
+<a class="btn" href="#join" style="color: #F7F6F2; background: #1F3F94; padding: 8px 14px; border-radius: 6px; font-weight: 500">Get early access</a>
+</nav>
+</header>
+
+<section id="top" style="padding: 88px 0 56px">
+<p style="margin: 0 0 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #1F3F94">For small teams shipping with Claude Code</p>
+<h1 style="margin: 0 0 20px; font-size: 52px; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em">Catch fake AI code before you merge it.</h1>
+<p style="margin: 0 0 32px; font-size: 19px; color: #4A4D55; max-width: 560px">AI agents sometimes fake "done". Sky spots it — empty tests, hardcoded answers, hidden errors.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+ <a class="btn" href="#join" style="display: inline-block; background: #16181D; color: #F7F6F2; padding: 13px 22px; border-radius: 6px; font-weight: 500; font-size: 16px; text-decoration: none">Get free early access</a>
+<a href="#how" style="font-size: 16px; padding: 13px 4px">How it works →</a>
+</div>
+<p style="margin: 20px 0 0; font-size: 14px; color: #6A6D75">Up to 5 teams · Python · built in public by a solo dev — <a href="https://medium.com/@AdityaZ">follow the build</a></p>
+<div style="margin-top: 48px; background: #16181D; color: #E9E7E1; border-radius: 8px; padding: 22px 26px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.8; overflow-x: auto">
+<div style="color: #8E929C">$ sky check</div>
+<div>test_refund <span style="color: #F2A65A">FAIL</span>  tests nothing</div>
+<div>refund.py:42 <span style="color: #F2A65A">FAIL</span>  hardcoded value</div>
+<div>tax.py <span style="color: #8FC79A">PASS</span></div>
+<div style="color: #8E929C; margin-top: 6px">example output</div>
+</div>
+</section>
+
+<section id="why" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Green tests aren't proof.</h2>
+<p style="margin: 0 0 28px; color: #4A4D55">Your agent can pass its own tests without the feature working. You find out in production.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Review less</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Stop reading every line. Sky points to the ones that matter.</p></div>
+<div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Merge with confidence</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Know the tests test something real, not just that they pass.</p></div>
+<div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Nothing new to learn</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Works inside Claude Code and on your PRs.</p></div>
+</div>
+</section>
+
+<section id="how" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">How it works</h2>
+<p style="margin: 0 0 28px; color: #4A4D55">Sky reruns your tests itself, checks if the agent quietly changed them, and watches every step it took. &quot;Done&quot; only counts with real proof.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">01</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Install</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Add the Sky plugin to Claude Code.</p></div>
+<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">02</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Code as usual</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Sky checks the work, and every GitHub PR.</p></div>
+<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">03</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Pass or fail</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">On a fail, warn or block the merge. Start with warn.</p></div>
+</div>
+</section>
+
+<section id="beta" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Free beta — only 5 spots</h2>
+<p style="margin: 0 0 24px; color: #4A4D55">You get Sky free and direct access to me. I get honest feedback on a short call.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: #DEDBD2; border: 1px solid #DEDBD2; border-radius: 8px; overflow: hidden">
+<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">LANGUAGE</div><div style="font-weight: 500">Python</div></div>
+<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">YOUR CODE</div><div style="font-weight: 500">Never leaves your machine</div></div>
+<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">COST</div><div style="font-weight: 500">Free, for honest feedback</div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; margin-top: 28px">
+ <a class="btn" href="#join" style="display: inline-block; background: #16181D; color: #F7F6F2; padding: 13px 22px; border-radius: 6px; font-weight: 500; font-size: 16px; text-decoration: none">Claim a spot</a>
+<a href="#join" style="font-size: 15px">Not on Python? Tell me what you use →</a>
+</div>
+</section>
+
+<section id="join" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Get your spot</h2>
+<p style="margin: 0 0 24px; color: #4A4D55">Send me this message. I reply to every one, usually within a day.</p>
+<div style="background: #FFFFFF; border: 1px solid #DEDBD2; border-radius: 8px; padding: 22px 24px">
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 6px">SEND TO</div>
+<div style="font-weight: 600; font-size: 18px; margin-bottom: 18px; overflow-wrap: anywhere">aditya1107zagade@gmail.com</div>
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 6px">MESSAGE</div>
+<pre id="msg" style="margin: 0 0 20px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; white-space: pre-wrap; color: #33363D">Hi Aditya, I want a Sky beta spot.
+Team size:
+Stack / language:
+Using Claude Code daily? (yes/no):
+GitHub or site:</pre>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<button type="button" class="btn" id="copyEmail" style="font: inherit; font-size: 15px; font-weight: 500; background: #16181D; color: #F7F6F2; border: 0; border-radius: 6px; padding: 12px 18px; min-height: 44px; cursor: pointer">Copy email</button>
+<button type="button" id="copyMsg" style="font: inherit; font-size: 15px; font-weight: 500; background: #FFFFFF; color: #16181D; border: 1px solid #16181D; border-radius: 6px; padding: 12px 18px; min-height: 44px; cursor: pointer">Copy message</button>
+<a href="mailto:aditya1107zagade@gmail.com?subject=Sky%20beta%20spot&amp;body=Hi%20Aditya%2C%20I%20want%20a%20Sky%20beta%20spot.%0ATeam%20size%3A%0AStack%20%2F%20language%3A%0AUsing%20Claude%20Code%20daily%3F%20(yes%2Fno)%3A%0AGitHub%20or%20site%3A" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; font-size: 15px">Open in email app →</a>
+</div>
+<p id="status" aria-live="polite" style="margin: 12px 0 0; font-size: 14px; color: #1F3F94; min-height: 20px"></p>
+</div>
+<p style="margin: 16px 0 0; font-size: 14px; color: #6A6D75">Not on Python? Send it anyway and tell me your language.</p>
+</section>
+
+<footer style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 32px 0 48px; border-top: 1px solid #DEDBD2; font-size: 14px; color: #6A6D75">
+<span>Built in public by Aditya Zagade.</span>
+<span style="display: flex; flex-wrap: wrap; gap: 20px">
+<a href="https://github.com/aditya-cyberverse">GitHub</a>
+<a href="https://linkedin.com/in/aditya-zagade-0a86a331b">LinkedIn</a>
+<a href="https://medium.com/@AdityaZ">Medium</a>
+<a href="mailto:aditya1107zagade@gmail.com">aditya1107zagade@gmail.com</a>
+</span>
+</footer>
+
+</div>
+</div>
+<script>
+{
+const st=document.getElementById('status');
+async function copy(t,label){
+ try{await navigator.clipboard.writeText(t);st.textContent=label+' copied.';}
+ catch(e){
+  try{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();st.textContent=label+' copied.';}
+  catch(e2){st.textContent='Copy blocked here. Long-press the text to copy it.';}
+ }
+}
+document.getElementById('copyEmail').addEventListener('click',()=>copy('aditya1107zagade@gmail.com','Email'));
+document.getElementById('copyMsg').addEventListener('click',()=>copy(document.getElementById('msg').textContent,'Message'));
+}
+</script>
+</body>
+</html>
