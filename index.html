@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sky — catch fake AI code before you merge it</title>
-<meta name="description" content="Sky is a Claude Code plugin that flags AI code that only looks done: empty tests, hardcoded answers, hidden errors. Free beta for 5 teams.">
+<meta name="description" content="Sky is a Claude Code plugin that flags AI code that only looks done: empty tests, hardcoded answers, hidden errors. See exactly how it caught it and how to fix it.">
 <meta property="og:title" content="Sky — catch fake AI code before you merge it">
 <meta property="og:description" content="A Claude Code plugin that flags AI code that only looks done. Free beta, 5 spots.">
 <meta property="og:type" content="website">
@@ -20,7 +20,7 @@ a{color:#1F3F94;text-decoration:none}a:hover{color:#16181D;text-decoration:under
 html{scroll-behavior:smooth}
 @media (max-width:640px){
  h1{font-size:36px !important}
- #why > div, #how > div, #beta > div:first-of-type{grid-template-columns:1fr !important}
+ 
 }
 </style>
 </head>
@@ -33,9 +33,10 @@ html{scroll-behavior:smooth}
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3F94" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 21h14M4 7h16M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/></svg>
 Sky <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: #1F3F94; border: 1px solid #1F3F94; border-radius: 4px; padding: 1px 6px">beta</span>
 </a>
-<nav style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; align-items: center">
+<nav style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; align-items: center" aria-label="Main">
 <a href="#how" style="color: #4A4D55">How it works</a>
-<a href="#beta" style="color: #4A4D55">Beta</a>
+<a href="#catch" style="color: #4A4D55">What you see</a>
+<a href="#pricing" style="color: #4A4D55">Pricing</a>
 <a class="btn" href="#join" style="color: #F7F6F2; background: #1F3F94; padding: 8px 14px; border-radius: 6px; font-weight: 500">Get early access</a>
 </nav>
 </header>
@@ -43,12 +44,12 @@ Sky <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font
 <section id="top" style="padding: 88px 0 56px">
 <p style="margin: 0 0 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #1F3F94">For small teams shipping with Claude Code</p>
 <h1 style="margin: 0 0 20px; font-size: 52px; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em">Catch fake AI code before you merge it.</h1>
-<p style="margin: 0 0 32px; font-size: 19px; color: #4A4D55; max-width: 560px">AI agents sometimes fake "done". Sky spots it — empty tests, hardcoded answers, hidden errors.</p>
+<p style="margin: 0 0 32px; font-size: 19px; color: #4A4D55; max-width: 560px">AI agents sometimes fake “done”. Sky catches it, shows you exactly how it happened, and tells you how to fix it.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
- <a class="btn" href="#join" style="display: inline-block; background: #16181D; color: #F7F6F2; padding: 13px 22px; border-radius: 6px; font-weight: 500; font-size: 16px; text-decoration: none">Get free early access</a>
-<a href="#how" style="font-size: 16px; padding: 13px 4px">How it works →</a>
+<a class="btn" href="#join" style="display: inline-block; background: #16181D; color: #F7F6F2; padding: 13px 22px; border-radius: 6px; font-weight: 500; font-size: 16px; text-decoration: none">Get free early access</a>
+<a href="#catch" style="font-size: 16px; padding: 13px 4px">See a real catch →</a>
 </div>
-<p style="margin: 20px 0 0; font-size: 14px; color: #6A6D75">Up to 5 teams · Python · built in public by a solo dev — <a href="https://medium.com/@AdityaZ">follow the build</a></p>
+<p style="margin: 20px 0 0; font-size: 14px; color: #6A6D75">Python · Claude Code · built in public by a solo dev — <a href="https://medium.com/@AdityaZ">follow the build</a></p>
 <div style="margin-top: 48px; background: #16181D; color: #E9E7E1; border-radius: 8px; padding: 22px 26px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.8; overflow-x: auto">
 <div style="color: #8E929C">$ sky check</div>
 <div>test_refund <span style="color: #F2A65A">FAIL</span>  tests nothing</div>
@@ -59,9 +60,9 @@ Sky <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font
 </section>
 
 <section id="why" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
-<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Green tests aren't proof.</h2>
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Green tests aren’t proof.</h2>
 <p style="margin: 0 0 28px; color: #4A4D55">Your agent can pass its own tests without the feature working. You find out in production.</p>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 24px">
 <div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Review less</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Stop reading every line. Sky points to the ones that matter.</p></div>
 <div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Merge with confidence</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Know the tests test something real, not just that they pass.</p></div>
 <div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Nothing new to learn</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Works inside Claude Code and on your PRs.</p></div>
@@ -70,25 +71,78 @@ Sky <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font
 
 <section id="how" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
 <h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">How it works</h2>
-<p style="margin: 0 0 28px; color: #4A4D55">Sky reruns your tests itself, checks if the agent quietly changed them, and watches every step it took. &quot;Done&quot; only counts with real proof.</p>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
-<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">01</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Install</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Add the Sky plugin to Claude Code.</p></div>
-<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">02</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Code as usual</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Sky checks the work, and every GitHub PR.</p></div>
-<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">03</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Pass or fail</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">On a fail, warn or block the merge. Start with warn.</p></div>
+<p style="margin: 0 0 28px; color: #4A4D55">Sky reruns your tests itself, checks if the agent quietly changed them, and watches every step it took. “Done” only counts with real proof.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 24px">
+<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">01</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Install</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">One command: <code style="font-family: 'JetBrains Mono', monospace; font-size: 14px">sky init</code></p></div>
+<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">02</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Code as usual</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">Sky checks every “done”, and every GitHub PR.</p></div>
+<div><div style="font-family: 'JetBrains Mono', monospace; color: #1F3F94; font-size: 14px; margin-bottom: 8px">03</div><h3 style="margin: 0 0 4px; font-size: 18px; font-weight: 600">Read the case file</h3><p style="margin: 0; color: #4A4D55; font-size: 16px">What went wrong, how Sky caught it, how to fix it.</p></div>
 </div>
 </section>
 
-<section id="beta" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
-<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Free beta — only 5 spots</h2>
-<p style="margin: 0 0 24px; color: #4A4D55">You get Sky free and direct access to me. I get honest feedback on a short call.</p>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: #DEDBD2; border: 1px solid #DEDBD2; border-radius: 8px; overflow: hidden">
-<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">LANGUAGE</div><div style="font-weight: 500">Python</div></div>
-<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">YOUR CODE</div><div style="font-weight: 500">Never leaves your machine</div></div>
-<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">COST</div><div style="font-weight: 500">Free, for honest feedback</div></div>
+<section id="catch" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Every catch comes with a case file.</h2>
+<p style="margin: 0 0 28px; color: #4A4D55">No wall of logs: what went wrong, how Sky caught it, how to fix it. Here’s a peek.</p>
+<div style="background: #FFFFFF; border: 1px solid #DEDBD2; border-radius: 8px; overflow: hidden">
+<div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid #ECEAE4">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: #FFFFFF; background: #A8470F; border-radius: 4px; padding: 2px 8px">FAIL</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75">Task: add coupon support</span>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; margin-top: 28px">
- <a class="btn" href="#join" style="display: inline-block; background: #16181D; color: #F7F6F2; padding: 13px 22px; border-radius: 6px; font-weight: 500; font-size: 16px; text-decoration: none">Claim a spot</a>
-<a href="#join" style="font-size: 15px">Not on Python? Tell me what you use →</a>
+<h3 style="margin: 0; font-size: 20px; font-weight: 600; line-height: 1.35">Changed the test instead of fixing the code</h3>
+<p style="margin: 0; font-size: 16px; color: #4A4D55">Like a student who can’t solve the sum, so they rewrite the question to fit their answer.</p>
+</div>
+<div style="padding: 18px 24px; border-bottom: 1px solid #ECEAE4"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">WHAT WENT WRONG</div><div style="font-size: 15px">The coupon test failed. The agent edited only the test until it passed.</div></div>
+<div style="position: relative">
+<div aria-hidden="true" style="filter: blur(4px); opacity: 0.55; user-select: none; pointer-events: none">
+<div style="padding: 18px 24px; border-bottom: 1px solid #ECEAE4"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">HOW SKY CAUGHT IT</div><div style="font-size: 15px">Sky read every step, put the original test back and ran it on the new code.</div></div>
+<div style="margin: 18px 24px; background: #16181D; color: #E9E7E1; border-radius: 8px; padding: 16px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.8; white-space: pre"><div>step 14  ran tests   1 FAIL</div><div>step 15  edited      tests/test_cart.py only</div><div>step 16  ran tests   PASS</div></div>
+<div style="padding: 0 24px 22px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">HOW TO FIX IT</div><div style="font-size: 15px">Restore the test and fix the coupon function.</div></div>
+</div>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; text-align: center; background: rgba(247,246,242,0.55)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+<span style="font-weight: 600; font-size: 17px">See how Sky caught it, and how to fix it</span>
+<span style="font-size: 15px; color: #4A4D55">Full case files unlock when you sign up. Free.</span>
+<a class="btn" href="#join" style="display: inline-block; background: #16181D; color: #F7F6F2; padding: 12px 20px; border-radius: 6px; font-weight: 500; font-size: 15px; text-decoration: none">Sign up to unlock</a>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding: 56px 0; border-top: 1px solid #DEDBD2">
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Not AI checking AI.</h2>
+<p style="margin: 0 0 24px; color: #4A4D55">Every pass or fail comes from tests Sky ran and fixed rules. No model gets a vote on the verdict.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); gap: 1px; background: #DEDBD2; border: 1px solid #DEDBD2; border-radius: 8px; overflow: hidden">
+<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">VERDICT</div><div style="font-weight: 500">Rules and real test runs</div></div>
+<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">YOUR CODE</div><div style="font-weight: 500">Never leaves your machine</div></div>
+<div style="background: #FFFFFF; padding: 18px 20px"><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75; margin-bottom: 4px">EVERY CHECK</div><div style="font-weight: 500">Ends in a signed receipt</div></div>
+</div>
+</section>
+
+<section id="pricing" style="padding: 56px 0; border-top: 1px solid #DEDBD2">
+<h2 style="margin: 0 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Pricing</h2>
+<p style="margin: 0 0 28px; color: #4A4D55">Free to try. Pay when Sky has caught something real for you.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #DEDBD2; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6A6D75">FREE</div>
+<div style="font-size: 36px; font-weight: 600; letter-spacing: -0.02em">₹0</div>
+<ul style="margin: 0; padding-left: 18px; font-size: 15px; color: #4A4D55; display: flex; flex-direction: column; gap: 6px">
+<li>Claude Code plugin, quick checks</li>
+<li>Case file on your own machine</li>
+<li>PR check on open-source repos</li>
+</ul>
+<a href="#join" style="margin-top: auto; text-align: center; border: 1px solid #16181D; color: #16181D; padding: 12px 18px; border-radius: 6px; font-weight: 500; font-size: 15px">Start free</a>
+</div>
+<div style="background: #16181D; color: #F7F6F2; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #B9BCC4">PRO</div>
+<div style="font-size: 36px; font-weight: 600; letter-spacing: -0.02em">₹2,500<span style="font-size: 16px; font-weight: 400; color: #B9BCC4"> / month</span></div>
+<ul style="margin: 0; padding-left: 18px; font-size: 15px; color: #D6D4CE; display: flex; flex-direction: column; gap: 6px">
+<li>Deep checks: sabotage tests + outside expert</li>
+<li>PR check on private repos</li>
+<li>Online dashboard for your whole team</li>
+</ul>
+<div style="font-size: 14px; color: #F7F6F2; background: #2A2D35; border-radius: 6px; padding: 10px 12px">Beta teams: <strong>₹1,500 / month, for life.</strong></div>
+<a href="#join" style="margin-top: auto; text-align: center; background: #F7F6F2; color: #16181D; padding: 12px 18px; border-radius: 6px; font-weight: 500; font-size: 15px">Claim a beta spot</a>
+</div>
 </div>
 </section>
 
@@ -115,7 +169,7 @@ GitHub or site:</pre>
 </section>
 
 <footer style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 32px 0 48px; border-top: 1px solid #DEDBD2; font-size: 14px; color: #6A6D75">
-<span>Built in public by Aditya Zagade.</span>
+<span>Built in public by Aditya Zagade · Veronica Labs</span>
 <span style="display: flex; flex-wrap: wrap; gap: 20px">
 <a href="https://github.com/aditya-cyberverse">GitHub</a>
 <a href="https://linkedin.com/in/aditya-zagade-0a86a331b">LinkedIn</a>
